@@ -1,218 +1,124 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AdEarn - Watch Ads & Earn Points. Ultra premium ad earning platform.">
-<title>AdEarn — Watch Ads &amp; Earn</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PixelProfit</title>
+<link rel="icon" type="image/jpeg" href="logo.png">
+<meta name="description" content="Earn with ads can easily like part time job ">
+<meta name="keywords" content="part time jobs,earn watching ads,work from home, honeygain,">
+<meta name="author" content="PxelProfit">
+<meta name="robots" content="index, follow">
+
 <link rel="stylesheet" href="style.css">
+
+<!-- POPUNDER AD -->
+<script src="https://pl28895421.effectivegatecpm.com/bb/b0/7d/bbb07ddd8bfbe5cee982432693d9b1b2.js"></script>
+
 </head>
+
 <body>
 
-<!-- Toast Notification -->
-<div class="toast" id="toast" role="alert">
-  <span class="toast-icon">✨</span>
-  <span class="toast-msg">Points Earned!</span>
-</div>
-
-<!-- Ad Watch Modal -->
-<div class="ad-modal-overlay" id="adOverlay" role="dialog" aria-modal="true">
-  <div class="ad-modal">
-    <div class="ad-modal-title">📺 WATCHING AD</div>
-    <div class="ad-modal-subtitle">Please wait while the ad plays</div>
-
-    <!-- Ad placeholder — insert your ad script here -->
-    <div class="ad-placeholder">
-      <span class="ad-placeholder-icon">▶</span>
-      <span class="ad-placeholder-text">Ad Network Slot</span>
-    </div>
-
-    <div class="timer-ring">
-      <svg viewBox="0 0 72 72" width="72" height="72">
-        <circle class="timer-track" r="30" cx="36" cy="36"/>
-        <circle class="timer-fill" id="timerFill" r="30" cx="36" cy="36"
-          style="stroke-dasharray:188.5;stroke-dashoffset:188.5"/>
-      </svg>
-      <div class="timer-text" id="timerNum">5</div>
-    </div>
-
-    <p style="font-size:0.72rem;color:var(--text-dim);font-family:'Orbitron',monospace;letter-spacing:0.1em;margin-bottom:16px;">
-      EARNING IN PROGRESS...
-    </p>
-
-    <button id="closeAdModal" style="background:none;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px 20px;color:var(--text-dim);font-family:'Orbitron',monospace;font-size:0.65rem;cursor:pointer;letter-spacing:0.1em;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'">
-      ✕ CLOSE (Forfeits Points)
-    </button>
-  </div>
-</div>
-
-<!-- Main Content -->
 <div class="container">
 
-  <!-- Header -->
-  <header>
-    <div class="logo">AdEarn</div>
-    <p class="tagline">Watch · Earn · Withdraw</p>
-  </header>
+<h1 class="logo">PixelProfit</h1>
 
-  <!-- User Bar -->
-  <div class="user-bar">
-    <div class="user-bar-item">
-      <div class="pulse-dot"></div>
-      LIVE
-    </div>
-    <div class="user-bar-item">
-      ID: <span id="userIdBar">——</span>
-    </div>
-    <div class="user-bar-item">
-      <a href="withdraw.html" style="color:var(--neon3);text-decoration:none;font-size:0.75rem;letter-spacing:0.08em;font-family:'Orbitron',monospace;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-        💸 WITHDRAW →
-      </a>
-    </div>
-  </div>
+<div class="card">
 
-  <!-- Stats Row -->
-  <div class="stats-row">
-    <div class="stat-card">
-      <span class="stat-icon">💰</span>
-      <span class="stat-value" id="totalPoints">0</span>
-      <span class="stat-label">Points</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">📺</span>
-      <span class="stat-value" id="adsWatched">0</span>
-      <span class="stat-label">Ads Watched</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">🎯</span>
-      <span class="stat-value">10</span>
-      <span class="stat-label">Per Ad</span>
-    </div>
-  </div>
+<div class="userbox">
+<p>User ID: <span id="userId"></span></p>
+<p>Total Points: <span id="points"></span></p>
+<p>Spin Wheel points: <span id="spins"></span></p>
+</div>
 
-  <!-- Progress Bar -->
-  <div class="progress-section">
-    <div class="progress-header">
-      <span class="progress-title">Progress to Withdrawal</span>
-      <span class="progress-percent" id="progressPct">0%</span>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-    <div class="progress-milestones">
-      <span>0</span>
-      <span>25</span>
-      <span>50</span>
-      <span>75</span>
-      <span id="progressNext">100</span>
-    </div>
-  </div>
+<div class="progress">
+<div id="progressBar"></div>
+</div>
 
-  <!-- Action Buttons -->
-  <div class="action-buttons">
-    <button class="btn-primary" id="watchBtn">
-      <span>▶</span>
-      <span class="btn-text">Watch Ad  +10 Points</span>
-    </button>
+<div class="timer" id="timer">Watch an ad to earn points</div>
 
-    <button class="btn-bonus" id="bonusBtn">
-      <span class="btn-text">🎁 Daily Bonus +20 pts</span>
-    </button>
+<button id="watchAd" class="btn primary">
+Watch Ad & Earn 10 Points
+</button>
 
-    <a href="withdraw.html" class="btn-secondary">
-      <span>💸</span>
-      <span>Withdraw Earnings</span>
-    </a>
-  </div>
+<button id="dailyBonus" class="btn bonus">
+Daily Bonus +20
+</button>
+<!-- NATIVE ADS -->
+<div class="nativeads">
 
-  <!-- User ID Display -->
-  <div class="section-title">Your Account</div>
-  <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:16px 20px;margin-bottom:20px;backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-    <div>
-      <div style="font-size:0.6rem;letter-spacing:0.2em;color:var(--text-dim);font-family:'Orbitron',monospace;text-transform:uppercase;margin-bottom:4px;">Your Unique ID</div>
-      <div style="font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--neon);" id="userId">——</div>
-    </div>
-    <div style="font-size:0.65rem;color:var(--text-dim);font-family:'Orbitron',monospace;letter-spacing:0.05em;">Auto-generated &amp; saved locally</div>
-  </div>
-
-  <!-- Banner Ad Section -->
-  <div class="section-title">Banner Ads</div>
-  <div class="ad-grid">
-    <div class="ad-slot ad-slot-full">
-      <!-- INSERT BANNER AD SCRIPT HERE -->
-      <span class="ad-slot-icon">🟦</span>
-      <span class="ad-slot-label">Banner Ad (728×90)</span>
-    </div>
-  </div>
-
-  <!-- Video Ad Section -->
-  <div class="section-title">Video Ads</div>
-  <div class="ad-grid">
-    <div class="ad-slot ad-slot-full" style="min-height:200px;">
-      <!-- INSERT VIDEO AD SCRIPT HERE -->
-      <span class="ad-slot-icon">🎬</span>
-      <span class="ad-slot-label">Video Ad Slot (16:9)</span>
-    </div>
-  </div>
-
-  <!-- Native / Popup Ad Sections -->
-  <div class="section-title">Native &amp; Display Ads</div>
-  <div class="ad-grid">
-    <div class="ad-slot">
-      <!-- INSERT NATIVE AD SCRIPT HERE -->
-      <span class="ad-slot-icon">📰</span>
-      <span class="ad-slot-label">Native Ad</span>
-    </div>
-    <div class="ad-slot">
-      <!-- INSERT POPUP/INTERSTITIAL SCRIPT HERE -->
-      <span class="ad-slot-icon">🪟</span>
-      <span class="ad-slot-label">Popup / Interstitial</span>
-    </div>
-  </div>
-
-  <!-- Rules Section -->
-  <div class="section-title">Platform Rules</div>
-  <div class="rules-card">
-    <div class="rules-title">⚠️ Terms &amp; Conditions</div>
-    <div class="rule-item">
-      <div class="rule-num">1</div>
-      <div>Users must watch ads completely and genuinely. Skipping or closing ads early will not count.</div>
-    </div>
-    <div class="rule-item">
-      <div class="rule-num">2</div>
-      <div>Fake clicks, bots, or automated tools are strictly prohibited and will result in account termination.</div>
-    </div>
-    <div class="rule-item">
-      <div class="rule-num">3</div>
-      <div>Minimum 100 points required to submit a withdrawal request via WhatsApp.</div>
-    </div>
-    <div class="rule-item">
-      <div class="rule-num">4</div>
-      <div>Withdrawal requests must include a screenshot of the withdrawal page sent via WhatsApp.</div>
-    </div>
-    <div class="rule-item">
-      <div class="rule-num">5</div>
-      <div>Payments will be processed within 5–7 business days after verification.</div>
-    </div>
-    <div class="rule-item">
-      <div class="rule-num">6</div>
-      <div>Daily bonus can be claimed once per day. Next bonus resets at midnight.</div>
-    </div>
-    <div class="rule-item">
-      <div class="rule-num">7</div>
-      <div>AdEarn reserves the right to reject fraudulent or duplicate withdrawal requests.</div>
-    </div>
-  </div>
-
-  <footer>
-    <p>© 2025 AdEarn Platform &nbsp;·&nbsp; All Rights Reserved</p>
-    <p style="margin-top:6px;font-size:0.6rem;opacity:0.5;">Data stored locally · No servers · Ultra Fast</p>
-  </footer>
+<h3>Recommended For You</h3>
+<script async="async" data-cfasync="false" src="https://pl28898012.effectivegatecpm.com/08c265ab3cdca1c3671aa7e06e1ab774/invoke.js"></script>
+<div id="container-08c265ab3cdca1c3671aa7e06e1ab774"></div>
+</div>
+<a href="#spinning">
+<button class="btn withdraw">Spin & Earn</button>
+</a>
+<a href="withdraw.html">
+<button class="btn withdraw">Withdraw Earnings</button>
+</a>
 
 </div>
 
+<!-- POINT CONVERSION -->
+<div class="card small">
+
+<h3>Earnings</h3>
+
+<p>100 Points = ₹10</p>
+<p>500 Points = ₹50</p>
+<p>1000 Points = ₹100</p>
+
+</div>
+
+</div>
+
+<!-- BANNER ADS -->
+<div class="adbox">
+
+<script>
+atOptions = {
+'key':'6478b17ea80dddc2ffe5a4983e173f18',
+'format':'iframe',
+'height':250,
+'width':300,
+'params':{}
+};
+</script>
+
+<script src="https://www.highperformanceformat.com/6478b17ea80dddc2ffe5a4983e173f18/invoke.js"></script>
+
+</div>
+<div id="spinning">
+  <h1>Spin & Earn</h1>
+
+<div id="coins">Coins: 0</div>
+
+<div class="pointer"></div>
+<div id="wheel"></div>
+
+<button onclick="spin()">SPIN</button>
+
+</div>
+
+
+<!-- SOCIAL BAR -->
+<script src="https://pl28895409.effectivegatecpm.com/d5/87/c6/d587c60e426483e9f79d61243a9bcfd9.js"></script>
+
 <script src="script.js"></script>
+ <!-- Rules -->
+  <div class="stitle">Platform Rules</div>
+  <div class="rcard">
+    <div class="rtitle">⚠️ Terms &amp; Conditions</div>
+    <div class="ri"><div class="rn">1</div><div>Users must watch ads completely and genuinely. Closing early forfeits points.</div></div>
+    <div class="ri"><div class="rn">2</div><div>Fake clicks, bots, or automated tools are strictly prohibited.</div></div>
+    <div class="ri"><div class="rn">3</div><div>Minimum 100 points required to submit a withdrawal request via WhatsApp.</div></div>
+    <div class="ri"><div class="rn">4</div><div>Withdrawal requests must include a screenshot of the withdrawal page.</div></div>
+    <div class="ri"><div class="rn">5</div><div>Payments processed within 5–7 business days after verification.</div></div>
+    <div class="ri"><div class="rn">6</div><div>Daily bonus can be claimed once per day. Resets at midnight.</div></div>
+    <div class="ri"><div class="rn">7</div><div>AdEarn reserves the right to reject fraudulent withdrawal requests.</div></div>
+  </div>
+
+
 </body>
 </html>

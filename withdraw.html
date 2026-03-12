@@ -1,241 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AdEarn Withdrawal — Send your withdrawal request via WhatsApp.">
-<title>AdEarn — Withdraw Earnings</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="style.css">
-<style>
-  .trophy-glow {
-    font-size: 3rem;
-    display: block;
-    text-align: center;
-    margin-bottom: 12px;
-    animation: trophyPulse 2s ease-in-out infinite;
-  }
-  @keyframes trophyPulse {
-    0%,100%{transform:scale(1) rotate(-3deg);filter:drop-shadow(0 0 8px #f59e0b)}
-    50%{transform:scale(1.1) rotate(3deg);filter:drop-shadow(0 0 20px #f59e0b)}
-  }
-  .wh-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    width: 100%;
-    padding: 20px 24px;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    border: none;
-    border-radius: 14px;
-    color: #fff;
-    font-family: 'Orbitron', monospace;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    box-shadow: 0 0 30px rgba(37,211,102,0.25);
-    margin-top: 6px;
-  }
-  .wh-btn:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(37,211,102,0.4); }
-  .wh-btn:active { transform: scale(0.98); }
-  .wh-icon { font-size: 1.4rem; }
-  .status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(34,197,94,0.1);
-    border: 1px solid rgba(34,197,94,0.25);
-    border-radius: 50px;
-    padding: 5px 14px;
-    font-family: 'Orbitron', monospace;
-    font-size: 0.6rem;
-    color: #22c55e;
-    letter-spacing: 0.12em;
-    margin-top: 8px;
-  }
-  .insufficient-warning {
-    background: rgba(239,68,68,0.08);
-    border: 1px solid rgba(239,68,68,0.2);
-    border-radius: 12px;
-    padding: 14px 16px;
-    color: #f87171;
-    font-size: 0.8rem;
-    font-family: 'Orbitron', monospace;
-    letter-spacing: 0.05em;
-    text-align: center;
-    line-height: 1.6;
-    display: none;
-  }
-  .step-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: 16px 0;
-  }
-  .step-item {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    font-size: 0.82rem;
-    color: var(--text-dim);
-    line-height: 1.5;
-  }
-  .step-num {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.6rem;
-    color: #22c55e;
-    background: rgba(34,197,94,0.1);
-    border: 1px solid rgba(34,197,94,0.2);
-    border-radius: 50%;
-    width: 22px; height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-weight: 700;
-  }
-</style>
-</head>
-<body>
 
-<!-- Toast -->
-<div class="toast" id="toast" role="alert">
-  <span class="toast-icon">✨</span>
-  <span class="toast-msg">Request Sent!</span>
-</div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Withdraw</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
 
 <div class="container">
 
-  <!-- Back Link -->
-  <div style="padding-top:20px;position:relative;z-index:1;">
-    <a href="index.html" class="back-link">← Back to Dashboard</a>
-  </div>
+<h1 class="logo">Withdrawal</h1>
 
-  <!-- Hero -->
-  <div class="withdraw-hero">
-    <span class="trophy-glow">🏆</span>
-    <h1>Withdraw Earnings</h1>
-    <div class="status-badge">
-      <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;animation:pulseDot 2s infinite;"></span>
-      Withdrawal System Active
-    </div>
-    <p style="font-size:0.78rem;color:var(--text-dim);margin-top:10px;font-family:'Rajdhani',sans-serif;max-width:360px;margin-left:auto;margin-right:auto;">
-      Send your withdrawal request via WhatsApp along with a screenshot of this page.
-    </p>
-  </div>
+<div class="card">
 
-  <!-- Account Summary Card -->
-  <div class="withdraw-card">
-    <div class="withdraw-row">
-      <span class="withdraw-row-label">User ID</span>
-      <span class="withdraw-row-value" id="wUserId">——</span>
-    </div>
-    <div class="withdraw-row">
-      <span class="withdraw-row-label">Total Points</span>
-      <span class="withdraw-row-value" id="wPoints" style="color:var(--neon3);">0</span>
-    </div>
-    <div class="withdraw-row">
-      <span class="withdraw-row-label">Min. Withdrawal</span>
-      <span class="withdraw-row-value" style="color:var(--text-dim);">100 pts</span>
-    </div>
-    <div class="withdraw-row">
-      <span class="withdraw-row-label">Status</span>
-      <span class="withdraw-row-value" id="wStatus" style="color:#22c55e;">Checking...</span>
-    </div>
-  </div>
+<p>User ID: <span id="userId"></span></p>
+<p>Total Points: <span id="points"></span></p>
 
-  <!-- Insufficient warning (shown if points < 100) -->
-  <div class="insufficient-warning" id="insufficientWarn">
-    ⚠️ You need at least 100 points to withdraw.<br>
-    Keep watching ads to reach the threshold!
-    <br><br>
-    <a href="index.html" style="color:var(--neon);font-size:0.75rem;">→ Go Watch Ads</a>
-  </div>
+<!-- NATIVE ADS -->
+<div class="adbox">
+<script async="async" data-cfasync="false" src="https://pl28898012.effectivegatecpm.com/08c265ab3cdca1c3671aa7e06e1ab774/invoke.js"></script>
+<div id="container-08c265ab3cdca1c3671aa7e06e1ab774"></div>
+</div>
 
-  <!-- Steps -->
-  <div class="rules-card" style="margin:16px 0;">
-    <div class="rules-title">📋 How to Withdraw</div>
-    <div class="step-list">
-      <div class="step-item"><div class="step-num">1</div>Make sure you have 100+ points earned.</div>
-      <div class="step-item"><div class="step-num">2</div>Click the "Send WhatsApp Request" button below.</div>
-      <div class="step-item"><div class="step-num">3</div>A pre-filled message will open in WhatsApp — just tap Send.</div>
-      <div class="step-item"><div class="step-num">4</div>Take a screenshot of this page and attach it in the WhatsApp chat.</div>
-      <div class="step-item"><div class="step-num">5</div>Your payment will be processed within 5–7 business days.</div>
-    </div>
-  </div>
+<button onclick="withdraw()" class="btn withdraw">
+Send Withdrawal Request
+</button>
 
-  <!-- Screenshot notice -->
-  <div class="screenshot-notice">
-    <span style="font-size:1.2rem;flex-shrink:0;">📸</span>
-    <span>Take a screenshot of this page and send it on WhatsApp to complete your withdrawal request. Screenshots verify your User ID and Points balance.</span>
-  </div>
-
-  <!-- WhatsApp Button -->
-  <button class="wh-btn" id="withdrawBtn">
-    <span class="wh-icon">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-      </svg>
-    </span>
-    Send WhatsApp Request
-  </button>
-
-  <!-- Rules repeat -->
-  <div class="rules-card" style="margin-top:20px;">
-    <div class="rules-title">⚠️ Important Rules</div>
-    <div class="rule-item"><div class="rule-num">1</div><div>Only genuine ad-watching counts towards your earnings.</div></div>
-    <div class="rule-item"><div class="rule-num">2</div><div>Multiple or duplicate withdrawal requests will be rejected.</div></div>
-    <div class="rule-item"><div class="rule-num">3</div><div>Screenshot must clearly show your User ID and Points.</div></div>
-    <div class="rule-item"><div class="rule-num">4</div><div>Processing takes 5–7 business days. No payment before that.</div></div>
-    <div class="rule-item"><div class="rule-num">5</div><div>AdEarn reserves the right to verify and reject suspicious activity.</div></div>
-  </div>
-
-  <footer>
-    <p>© 2025 AdEarn Platform &nbsp;·&nbsp; All Rights Reserved</p>
-    <p style="margin-top:6px;font-size:0.6rem;opacity:0.5;">Secure · Local · Ultra Fast</p>
-  </footer>
+<p class="note">
+Take screenshot of this page and send it on WhatsApp to complete withdrawal.
+</p>
 
 </div>
 
-<script src="script.js"></script>
-<script>
-  // Withdraw page extras
-  document.addEventListener('DOMContentLoaded', () => {
-    const pts = parseInt(localStorage.getItem('adearn_points')) || 0;
-    const statusEl = document.getElementById('wStatus');
-    const warnEl = document.getElementById('insufficientWarn');
-    const btn = document.getElementById('withdrawBtn');
+</div>
 
-    if (pts >= 100) {
-      statusEl.textContent = '✓ Eligible';
-      statusEl.style.color = '#22c55e';
-    } else {
-      statusEl.textContent = `Need ${100 - pts} more pts`;
-      statusEl.style.color = '#f87171';
-      if (warnEl) warnEl.style.display = 'block';
-      if (btn) {
-        btn.style.opacity = '0.45';
-        btn.style.cursor = 'not-allowed';
-        btn.style.filter = 'grayscale(50%)';
-        btn.addEventListener('click', e => {
-          if (pts < 100) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            let t = document.getElementById('toast');
-            t.querySelector('.toast-icon').textContent = '⚠️';
-            t.querySelector('.toast-msg').textContent = `Need ${100 - pts} more points!`;
-            t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 3000);
-          }
-        }, true);
-      }
-    }
-  });
-</script>
+
+<script src="script.js"></script>
+
 </body>
 </html>
